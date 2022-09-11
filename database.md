@@ -2,7 +2,7 @@
 
 ## 関連 (チケット)
 
-```{mermaid}
+```mermaid
 classDiagram
 
 class enumerations {
@@ -89,7 +89,7 @@ issues -- issue_relations : issues.id = issue_relations.issue_to_id
 
 ## 関連 (チケットとコメント)
 
-```{mermaid}
+```mermaid
 classDiagram
 
 class issues {
@@ -132,7 +132,7 @@ journals -- users : journals.user_id = users.id
 ## 関連 (チケットとカスタムフィールド)
 
 
-```{mermaid}
+```mermaid
 classDiagram
 
 class custom_fields {
@@ -199,7 +199,7 @@ custom_fields -- custom_values : custom_fields.id = custom_values.custom_field_i
 
 ## 関連 (チケットと作業時間)
 
-```{mermaid}
+```mermaid
 classDiagram
 
 class enumerations {
@@ -254,7 +254,7 @@ time_entries -- users : time_entries.user_id = users.id
 ## 関連 (チケットとリポジトリ)
 
 
-```{mermaid}
+```mermaid
 classDiagram
 
 class changesets {
@@ -297,7 +297,7 @@ changesets -- users : changesets.user_id = users.id
 ## 関連 (チケットとウォッチャー)
 
 
-```{mermaid}
+```mermaid
 classDiagram
 
 class issues {
