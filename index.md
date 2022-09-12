@@ -8,6 +8,7 @@ numbered: 2
 ---
 
 database
+plugins/index
 ```
 
 ## 索引と検索
