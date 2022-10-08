@@ -331,6 +331,65 @@ issues -- watchers : issues.id = watchers.watchable_id AND watchers.watchable_ty
 watchers -- users : watchers.user_id = user.id
 ```
 
+## 関連 (Wiki)
+
+```mermaid
+classDiagram
+
+class projects {
+    id
+}
+
+class users {
+    id
+}
+
+class wiki_content_versions {
+    wiki_content_id
+    page_id
+    author_id
+}
+
+class wiki_contents {
+    id
+    page_id
+    author_id
+}
+
+class wiki_pages {
+    id
+    wiki_id
+    parent_id
+}
+
+class wiki_redirects {
+    wiki_id
+    redirects_to_wiki_id
+}
+
+class wikis {
+    id
+    project_id
+}
+
+erDiagram
+
+projects -- wikis : projects.id = wikis.project_id
+
+wikis -- wiki_pages : wikis.id = wiki_pages.wiki_id
+wikis -- wiki_redirects : wikis.id = wiki_id
+wikis -- wiki_redirects : wikis.id = wiki_redirects_to_wiki_id
+
+wiki_pages -- wiki_content_versions : wiki_pages.id = wiki_content_versions.page_id
+wiki_pages -- wiki_contents : wiki_pages.id = wiki_contents.page_id
+wiki_pages -- wiki_pages : wiki_pages.id = wiki_pages.parent_id
+
+wiki_contents -- wiki_content_versions : wiki_contents.id = wiki_content_versions.wiki_content_id
+wiki_contents -- users : wiki_contents.author_id = users.id
+
+wiki_content_versions -- users : wiki_content_versions.author_id = users.id
+```
+
 ## changesets
 
 | 型       | カラム名         |
@@ -597,6 +656,63 @@ watchers -- users : watchers.user_id = user.id
 | string   | watchable_type     |
 | integer  | watchable_id       |
 | integer  | user_id            |
+
+## wiki_content_versions
+
+| 型       | カラム名           |
+| :------: | :----------------: |
+| integer  | id                 |
+| integer  | wiki_content_id    |
+| integer  | page_id            |
+| integer  | author_id          |
+| bytes    | data               |
+| string   | compression        |
+| string   | comments           |
+| datetime | updated_on         |
+| integer  | version            |
+
+## wiki_contents
+
+| 型       | カラム名           |
+| :------: | :----------------: |
+| integer  | id                 |
+| integer  | page_id            |
+| integer  | authtor_id         |
+| string   | text               |
+| string   | commments          |
+| datetime | updated_on         |
+| integer  | version            |
+
+## wiki_pages
+
+| 型       | カラム名           |
+| :------: | :----------------: |
+| integer  | id                 |
+| integer  | wiki_id            |
+| string   | title              |
+| datetime | created_on         |
+| boolean  | protected          |
+| integer  | parent_id          |
+
+## wiki_redirects
+
+| 型       | カラム名             |
+| :------: | :------------------: |
+| integer  | id                   |
+| integer  | wiki_id              |
+| string   | title                |
+| string   | redirect_to          |
+| datetime | created_on           |
+| integer  | redirects_to_wiki_id |
+
+## wikis
+
+| 型       | カラム名           |
+| :------: | :----------------: |
+| integer  | id                 |
+| integer  | project_id         |
+| string   | start_page         |
+| integer  | status             |
 
 ## 参照
 
