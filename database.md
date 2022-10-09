@@ -331,6 +331,51 @@ issues -- watchers : issues.id = watchers.watchable_id AND watchers.watchable_ty
 watchers -- users : watchers.user_id = user.id
 ```
 
+## 関連 (リポジトリ)
+
+```mermaid
+classDiagram
+
+class changes {
+    changeset_id
+}
+
+class changeset_parents {
+    changeset_id
+    parent_id
+}
+
+class changesets {
+    id
+    repository_id
+    user_id
+}
+
+class projects {
+    id
+}
+
+class repositories {
+    id
+    project_id
+}
+
+class users {
+    id
+}
+
+erDiagram
+
+projects -- repositories : project.id = repositories.project_id
+
+repositories -- changesets : repositories.id = changesets_repository_id
+
+changesets -- changes : changesets.id = changes.changeset_id
+changesets -- changeset_parents : changesets.id == changeset_parents.changeset_id
+changesets -- changeset_parents : changesets.id == changeset_parents.parent_id
+changesets -- users : changesets.user_id = users.id
+```
+
 ## 関連 (Wiki)
 
 ```mermaid
@@ -389,6 +434,26 @@ wiki_contents -- users : wiki_contents.author_id = users.id
 
 wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 ```
+
+## changes
+
+| 型       | カラム名         |
+| :------: | :--------------: |
+| integer  | id               |
+| integer  | changeset_id     |
+| string   | action           |
+| string   | path             |
+| string   | from_path        |
+| string   | from_revision    |
+| string   | revision         |
+| string   | branch           |
+
+## changeset_parents
+
+| 型       | カラム名         |
+| :------: | :--------------: |
+| integer  | changeset_id     |
+| integer  | parent_id        |
 
 ## changesets
 
@@ -579,6 +644,24 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 | boolean  | inherit_members        |
 | integer  | default_version_id     |
 | integer  | default_assigned_to_id |
+
+## repositories
+
+| 型       | カラム名               |
+| :------: | :--------------------: |
+| integer  | id                     |
+| integer  | project_id             |
+| string   | url                    |
+| string   | login                  |
+| string   | password               |
+| string   | root_url               |
+| string   | type                   |
+| string   | path_encoding          |
+| string   | log_encoding           |
+| string   | extra_info             |
+| string   | identifier             |
+| boolean  | is_default             |
+| datetime | created_on             |
 
 ## time_entries
 
