@@ -376,6 +376,80 @@ changesets -- changeset_parents : changesets.id == changeset_parents.parent_id
 changesets -- users : changesets.user_id = users.id
 ```
 
+## 関連 (ユーザ)
+
+```mermaid
+classDiagram
+
+class auth_sources {
+    id
+}
+
+class email_addresses {
+    user_id
+}
+
+class groups_users {
+    group_id
+    user_id
+}
+
+class member_roles {
+    member_id
+    role_id
+}
+
+class members {
+    id
+    user_id
+    project_id
+}
+
+class projects {
+    id
+}
+
+class roles {
+    id
+}
+
+class roles_managed_roles {
+    role_id
+    managed_role_id
+}
+
+class tokens {
+    user_id
+}
+
+class user_preferences {
+    user_id
+}
+
+class users {
+    id
+    auth_source_id
+}
+
+erDiagram
+
+users -- auth_sources : users.auth_id = auth_sources.id
+users -- email_addresses : users.id = email_addresses.user_id
+users -- groups_users : users.id = groups_users.group_id
+users -- groups_users : users.id = groups_users.user_id
+users -- members : users.id = members.user_id
+users -- user_preferences : users.id = user_preferences.user_id
+users -- tokens : users.id = tokens.user_id
+
+members -- member_roles : members.id = member_roles.member_id
+members -- projects : members.project_id = projects.id
+
+member_roles -- roles : member_roles.role_id = roles.id
+
+roles -- roles_managed_roles : roles.id = roles_managed_roles.role_id
+roles -- roles_managed_roles : roles.id = roles_managed_roles.managed_role_id
+```
+
 ## 関連 (Wiki)
 
 ```mermaid
@@ -434,6 +508,27 @@ wiki_contents -- users : wiki_contents.author_id = users.id
 
 wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 ```
+
+## auth_sources
+
+| 型       | カラム名          |
+| :------: | :---------------: |
+| integer  | id                |
+| string   | type              |
+| string   | name              |
+| string   | host              |
+| integer  | port              |
+| string   | account           |
+| string   | account_password  |
+| string   | base_dn           |
+| string   | attr_login        |
+| string   | attr_firstname    |
+| string   | attr_lastname     |
+| string   | attr_mail         |
+| boolean  | onthefly_register |
+| boolean  | tls               |
+| string   | filter            |
+| integer  | timeout           |
 
 ## changes
 
@@ -525,6 +620,18 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 | integer  | custom_field_id  |
 | string   | value            |
 
+## email_addresses
+
+| 型       | カラム名         |
+| :------: | :--------------: |
+| integer  | id               |
+| integer  | user_id          |
+| string   | address          |
+| boolean  | is_default       |
+| boolean  | notify           |
+| datetime | created_on       |
+| datetime | updated_on       |
+
 ## enumerations
 
 | 型       | カラム名         |
@@ -538,6 +645,13 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 | integer  | project_id       |
 | integer  | parent_id        |
 | string   | position_name    |
+
+## groups_users
+
+| 型       | カラム名         |
+| :------: | :--------------: |
+| integer  | group_id         |
+| integer  | user_id          |
 
 ## issue_categories
 
@@ -625,6 +739,25 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 | datetime | created_on       |
 | boolean  | private_notes    |
 
+## member_roles
+
+| 型       | カラム名               |
+| :------: | :--------------------: |
+| integer  | id                     |
+| integer  | member_id              |
+| integer  | role_id                |
+| integer  | inherited_from         |
+
+## members
+
+| 型       | カラム名               |
+| :------: | :--------------------: |
+| integer  | id                     |
+| integer  | user_id                |
+| integer  | project_id             |
+| datetime | created_on             |
+| boolean  | mail_notification      |
+
 ## projects
 
 | 型       | カラム名               |
@@ -663,6 +796,29 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 | boolean  | is_default             |
 | datetime | created_on             |
 
+## roles
+
+| 型       | カラム名                |
+| :------: | :---------------------: |
+| integer  | id                      |
+| string   | name                    |
+| integer  | position                |
+| boolean  | assignable              |
+| integer  | builtin                 |
+| string   | permissions             |
+| string   | issues_visibility       |
+| string   | users_visibility        |
+| string   | time_entries_visibility |
+| boolean  | all_roles_managed       |
+| string   | settings                |
+
+## roles_managed_roles
+
+| 型       | カラム名         |
+| :------: | :--------------: |
+| integer  | role_id          |
+| integer  | managed_role_id  |
+
 ## time_entries
 
 | 型       | カラム名         |
@@ -681,6 +837,17 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 | datetime | created_on       |
 | datetime | updated_on       |
 
+## tokens
+
+| 型       | カラム名           |
+| :------: | :----------------: |
+| integer  | id                 |
+| integer  | user_id            |
+| string   | action             |
+| string   | value              |
+| datetime | created_on         |
+| datetime | updated_on         |
+
 ## trackers
 
 | 型       | カラム名           |
@@ -692,6 +859,16 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 | boolean  | is_in_roadmap      |
 | integer  | fields_bits        |
 | integer  | default_status_id  |
+
+## user_preferences
+
+| 型       | カラム名           |
+| :------: | :----------------: |
+| integer  | id                 |
+| integer  | user_id            |
+| string   | others             |
+| boolean  | hide_mail          |
+| string   | time_zone          |
 
 ## users
 
