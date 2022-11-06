@@ -8,6 +8,7 @@ numbered: 2
 ---
 
 database
+wiki
 plugins/index
 ```
 
