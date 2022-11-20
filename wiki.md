@@ -46,7 +46,7 @@ Redmine 3.4-5.0 の権限を記載する。
 - lib/redmine.rb(-4.2), lib/redmine/preparation.rb(5.0-)
   - `WikiController#index`
   - `WikiController#show`
-  - `WikiController#special`
+  - `WikiController#special` (-1.1)
   - `WikiController#date_index`
 - lib/redmine/default_data/loader.rb
   - 開発者ロール
