@@ -10,6 +10,7 @@ numbered: 2
 database
 acl
 wiki
+macro
 plugins/index
 ```
 
