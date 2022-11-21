@@ -12,7 +12,14 @@ Redmine 3.4-5.0 の権限を記載する。
   - `WikiPage#safe_attributes(is_start_page)` ([#26579](https://www.redmine.org/issues/26579))
 - lib/redmine.rb(-4.2), lib/redmine/preparation.rb(5.0-)
   - `WikisController#edit`
-  - `WikisController#destory`
+  - `WikisController#destroy`
+- app/views/wiki/date_index.html.erb
+  - 「削除」のリンク
+- app/views/wiki/index.html.erb
+  - 「削除」のリンク
+- app/views/wiki/show.html.erb
+  - 「削除」のリンク (`link_to_if_authorized`)
+  - 「新しいWikiページ」のリンク (`link_to_if_authorized`)
 
 ### Wikiページ名の変更(rename_wiki_pages)
 
@@ -23,6 +30,8 @@ Redmine 3.4-5.0 の権限を記載する。
   - `WikiPage#safe_attributes=`
 - lib/redmine.rb(-4.2), lib/redmine/preparation.rb(5.0-)
   - `WikiController#rename`
+- app/views/wiki/show.html.erb
+  - 「名前」のリンク (`link_to_if_authorized`)
 
 ### Wikiページの削除(delete_wiki_pages)
 
@@ -31,6 +40,10 @@ Redmine 3.4-5.0 の権限を記載する。
   - `WikiController#destroy_version`
 - lib/redmine/default_data/loader.rb
   - 開発者ロール
+- app/views/wiki/history.html.erb
+  - 履歴表示の「削除」のリンク
+- app/views/wiki/show.html.erb
+  - 「削除」のリンク (`link_to_if_authorized`)
 
 ### Wikiの閲覧(view_wiki_pages)
 
@@ -63,6 +76,12 @@ Redmine 3.4-5.0 の権限を記載する。
   - `WikiController#show`
 - lib/redmine.rb
   - `WikiController#export`
+- app/views/wiki/date_index.html.erb
+  - 「他の形式にエクスポート」のリンク
+- app/views/wiki/index.html.erb
+  - 「他の形式にエクスポート」のリンク
+- app/views/wiki/show.html.erb
+  - 「他の形式にエクスポート」のリンク
 
 ### Wiki履歴の閲覧(view_wiki_edits)
 
@@ -81,6 +100,9 @@ Redmine 3.4-5.0 の権限を記載する。
   - 報告者ロール
   - 非メンバロール
   - 匿名ユーザロール
+- app/views/wiki/show.html.erb
+  - 「x件の履歴」のリンク
+  - 「履歴」のリンク (`link_to_if_authorized`)
 
 ### Wikiページの編集(edit_wiki_pages)
 
@@ -95,6 +117,16 @@ Redmine 3.4-5.0 の権限を記載する。
   - `WikiController#add_attachment`
 - lib/redmine/default_data/loader.rb
   - 開発者ロール
+- app/views/wiki/date_index.html.erb
+  - 「新しいWikiページ」のリンク
+- app/views/wiki/index.html.erb
+  - 「新しいWikiページ」のリンク
+- app/views/wiki/show.html.erb
+  - 「新しいWikiページ」のリンク
+  - 「編集」のリンク (`link_to_if_authorized`)
+  - 「新しいWikiページ」のリンク (`link_to_if_authorized`)
+- app/views/wiki/_sidebar.html.erb
+  - サイドバーの「編集」のリンク
 
 ### 添付ファイルの削除(delete_wiki_pages_attaachments)
 
@@ -109,3 +141,6 @@ Redmine 3.4-5.0 の権限を記載する。
   - `WikiPage#editable_by?`
 - lib/redmine.rb(-4.2), lib/redmine/preparation.rb(5.0-)
   - `WikiController#protect`
+- app/views/wiki/show.html.erb
+  - 「ロック」のリンク (`link_to_if_authorized`)
+  - 「アンロック」のリンク (`link_to_if_authorized`)
