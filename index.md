@@ -11,6 +11,7 @@ database
 acl
 wiki
 macro
+plugin
 plugins/index
 ```
 
