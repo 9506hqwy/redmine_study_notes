@@ -4,9 +4,12 @@
 
 Rails のイニシャライザでプラグインがロードされる(*config/initializers/30-redmine.rb*)。
 
-`plugins` ディレクトリにあるディレクトリをプラグインとして読み込み、
+Redmine4.2 以前は `plugins` ディレクトリにあるディレクトリをプラグインとして読み込み、プラグインの `init.rb` が実行される。
+Redmine5.0 以降は `plugins` ディレクトリにあるディレクトリをプラグインとして読み込み、
 `to_prepare` イベント発生時にすべてのプラグインの `init.rb` がディレクトリを読み込んだ順番に実行される。
-すべてのプラグインの `init.rb` の処理が完了したらフック `after_plugins_loaded` が実行される。
+
+Redmine4.2 以降の場合はすべてのプラグインの `init.rb` の処理が完了したら
+フック `after_plugins_loaded` が実行される([#34072](https://www.redmine.org/issues/34072))。
 
 ## クラス拡張
 
@@ -98,6 +101,8 @@ t.a
 
 プラグインがコントローラクラスを拡張したとで、
 そのコントローラクラスに `include` されたモジュールを拡張してもコントローラから拡張した処理は実行できない。
+
+ただし、Ruby3 ではあとから `include`, `prepend` したモジュールもコントローラから実行できる。
 
 ### `alias` と `prepend`
 
