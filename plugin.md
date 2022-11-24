@@ -104,6 +104,58 @@ t.a
 
 ただし、Ruby3 ではあとから `include`, `prepend` したモジュールもコントローラから実行できる。
 
+また、`include`, `prepend` のときに `Helper.class_eval` で定義した処理も実行できる。
+
+### `alias` と `super`
+
+`alias` と `super` で同じメソッドを上書きすると `alias` のあとの `super` の `include` は反映されない。
+
+```ruby
+module Included1
+  def a
+    puts '1'
+  end
+end
+
+module Included2
+  def self.included(base)
+    base.class_eval do
+      puts('class_eval')
+      alias_method :a_orig, :a
+      alias_method :a, :a_new
+    end
+  end
+
+  def a_new
+    puts '2'
+    a_orig
+  end
+end
+
+module Included3
+  def a
+    puts '3'
+    super
+  end
+end
+
+m = Module.new
+m.include(Included1)
+m.include(Included2)
+m.include(Included3) # not affected
+
+class Target
+end
+
+Target.include(m)
+
+t = Target.new
+Target.ancestors # [Target, #<Module:0x000055d4c650f4d8>, Included3, Included2, Included1, Object, ...]
+t.a
+# 2
+# 1
+```
+
 ### `alias` と `prepend`
 
 `prepend` のあとに `alias`, `alias_method` すると無限ループする。
