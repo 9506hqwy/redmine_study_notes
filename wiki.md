@@ -73,9 +73,9 @@ Redmine 3.4-5.0 の権限を記載する。
 ### Wikiページを他の形式にエクスポート(export_wiki_pages)
 
 - app/controllers/wiki_controller.rb
-  - `WikiController#show`
+  - `WikiController#show` (ページ単位)
 - lib/redmine.rb
-  - `WikiController#export`
+  - `WikiController#export` (一括)
 - app/views/wiki/date_index.html.erb
   - 「他の形式にエクスポート」のリンク
 - app/views/wiki/index.html.erb
@@ -139,6 +139,7 @@ Redmine 3.4-5.0 の権限を記載する。
 
 - app/models/wiki_page.rb
   - `WikiPage#editable_by?`
+  - `WikiPage#DEFAULT_PROTECTED_PAGES`
 - lib/redmine.rb(-4.2), lib/redmine/preparation.rb(5.0-)
   - `WikiController#protect`
 - app/views/wiki/show.html.erb
