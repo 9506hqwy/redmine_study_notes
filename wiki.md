@@ -31,7 +31,7 @@ Redmine 3.4-5.0 の権限を記載する。
 - lib/redmine.rb(-4.2), lib/redmine/preparation.rb(5.0-)
   - `WikiController#rename`
 - app/views/wiki/show.html.erb
-  - 「名前」のリンク (`link_to_if_authorized`)
+  - 「名前変更」のリンク (`link_to_if_authorized`)
 
 ### Wikiページの削除(delete_wiki_pages)
 
@@ -124,7 +124,7 @@ Redmine 3.4-5.0 の権限を記載する。
 - app/views/wiki/show.html.erb
   - 「新しいWikiページ」のリンク
   - 「編集」のリンク (`link_to_if_authorized`)
-  - 「新しいWikiページ」のリンク (`link_to_if_authorized`)
+  - 「このバージョンにロールバック」のリンク (`link_to_if_authorized`)
 - app/views/wiki/_sidebar.html.erb
   - サイドバーの「編集」のリンク
 
