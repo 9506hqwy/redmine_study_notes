@@ -573,27 +573,36 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 
 ## custom_fields
 
-| 型       | カラム名         |
-| :------: | :--------------: |
-| integer  | id               |
-| string   | type             |
-| string   | name             |
-| string   | field_format     |
-| string   | possible_values  |
-| string   | regexp           |
-| integer  | min_length       |
-| integer  | max_length       |
-| boolean  | is_required      |
-| boolean  | is_for_adll      |
-| boolean  | is_filter        |
-| integer  | position         |
-| boolean  | searchable       |
-| string   | default_value    |
-| boolean  | editable         |
-| boolean  | visible          |
-| boolean  | multiple         |
-| string   | format_store     |
-| string   | description      |
+| 型       | カラム名         | 備考                     |
+| :------: | :--------------: | :----------------------: |
+| integer  | id               |                          |
+| string   | type             | カスタムフィールドの対象 |
+| string   | name             | 名前                     |
+| string   | field_format     | 形式                     |
+| string   | possible_values  | 選択肢                   |
+| string   | regexp           | 正規表現                 |
+| integer  | min_length       | 最短長                   |
+| integer  | max_length       | 最大長                   |
+| boolean  | is_required      | 必須                     |
+| boolean  | is_for_adll      | すべてのユーザー         |
+| boolean  | is_filter        | フィルタとして使用       |
+| integer  | position         |                          |
+| boolean  | searchable       | 検索対象                 |
+| string   | default_value    | デフォルト値             |
+| boolean  | editable         |                          |
+| boolean  | visible          | 次のロールのみ           |
+| boolean  | multiple         | 複数選択可               |
+| string   | format_store     | ※                       |
+| string   | description      | 説明                     |
+
+- format_store に yaml 形式で保存される。
+  - edit_tag_style: 表示 (ドロップダウンリスト: ''、チェックボックス: check_box)
+  - extensions_allowed: 許可する拡張子
+  - full_width_layout: ワイド表示 ('', '1')
+  - text_formatting: テキスト書式 ('', '1')
+  - url_pattern: 値に設定するリンクURL
+  - user_role: ロール (形式がユーザの場合)
+  - version_status: ステータス (形式がバージョンの場合)
 
 ## custom_fields_projects
 
