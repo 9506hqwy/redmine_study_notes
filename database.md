@@ -789,21 +789,29 @@ wiki_content_versions -- users : wiki_content_versions.author_id = users.id
 
 ## repositories
 
-| 型       | カラム名               |
-| :------: | :--------------------: |
-| integer  | id                     |
-| integer  | project_id             |
-| string   | url                    |
-| string   | login                  |
-| string   | password               |
-| string   | root_url               |
-| string   | type                   |
-| string   | path_encoding          |
-| string   | log_encoding           |
-| string   | extra_info             |
-| string   | identifier             |
-| boolean  | is_default             |
-| datetime | created_on             |
+| 型       | カラム名               | 備考                                          |
+| :------: | :--------------------: | :-------------------------------------------: |
+| integer  | id                     |                                               |
+| integer  | project_id             |                                               |
+| string   | url                    |                                               |
+| string   | login                  | ログインID                                    |
+| string   | password               | パスワード                                    |
+| string   | root_url               |                                               |
+| string   | type                   | バージョン管理システム "Respotiory::Git" など |
+| string   | path_encoding          | パスのエンコーディング                        |
+| string   | log_encoding           | コミットメッセージのエンコーディング          |
+| string   | extra_info             | ※                                            |
+| string   | identifier             | 識別子                                        |
+| boolean  | is_default             | メインリポジトリ                              |
+| datetime | created_on             |                                               |
+
+password は `database_cipher_key` で暗号化される。
+
+extra_info に yaml の形式で保存される。
+  - Git の場合
+    - extra_report_last_commit: `report_last_commit` の値 (ファイルとディレクトリの最新コミットを表示する)
+    - heads: ブランチの HEAD
+    - db_consistent.ordering: ???
 
 ## roles
 
