@@ -70,6 +70,10 @@ Redmine::Scm::Base.add "XXX"
 
   `Changeset` モデルの `format_identifier` となる。
 
+- `latest_changesets(path,rev,limit=10)`
+
+  参照に関連するリビジョンを表示する。
+
 ## アダプタ
 
 バージョン管理ソフトウェアを操作する。
@@ -150,6 +154,10 @@ Redmine::Scm::Base.add "XXX"
   - revision
   - branch: string
   - parents: string[] # 親リビジョンの名前
+
+- `form_identifier`
+
+  表示するとき使用する文字列を返却する。
 
 ### Annotate
 
