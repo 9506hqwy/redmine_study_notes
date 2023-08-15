@@ -12,6 +12,7 @@ acl
 wiki
 macro
 repository
+setting
 plugin
 plugins/index
 ```
