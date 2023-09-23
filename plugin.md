@@ -253,3 +253,29 @@ Rails4 は `Controller._helpers` に `include` される。
 `ActionView::Rendering._render_template` で `view_context` として `ActionView::Base` が作成され `Controller._helpers` を `include` し
 `ActionView::Renderer.render` に渡される。
 `Controler._helpers` は `Controller.helpers` で取得できる `ActionView::Base` にも `extend` されている(*actionpack/lib/action_controller/metal/helpers.rb*)。
+
+## テスト
+
+### カバレッジ
+
+環境変数 `COVERAGE` を設定するとテスト時にコードカバレッジが *./coverage* ディレクトリに HTML 形式で格納される。
+
+テストは以下のコマンドで実行できる。
+
+```sh
+bundle exec rake redmine:plugins:test NAME=<プラグインの名前>
+```
+
+または、
+
+```sh
+bundle exec rake test TEST=plugins/<プラグインの名前>/test/**/*_test.rb
+```
+
+上記はプラグインがロードされるタイミングが異なる。
+前者は `init.rb`, `test_helper.rb` の順に実行される、
+後者は `test_helper.rb`, `init.rb` の順に実行される、
+そのため、`test_helper.rb` 内で `SimpleCov.start` 前に `init.rb` で `require` する前者の実行方法では
+*lib* ディレクトリのカバレッジが取得できない場合がある。
+
+なぜか Redmine3 は影響を受けない。複数回 `init.rb` が呼ばれていそう。

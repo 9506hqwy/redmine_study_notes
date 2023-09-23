@@ -18,7 +18,7 @@ extensions = [
     'myst_parser',
     'sphinxcontrib.mermaid',
 ]
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.venv']
 language = 'ja'
 
 # -- Options for HTML output -------------------------------------------------
