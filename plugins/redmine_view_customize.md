@@ -3,16 +3,19 @@
 ## 添付ファイルとリポジトリのファイルプレビュー画面のキーボードショートカットを無効化する
 
 * パスのパターン
-  ```
+
+  ```text
   /(attachments|repository)/
   ```
 
 * タイプ
-  ```
+
+  ```text
   Javascript
   ```
 
 * コード
+
   ```javascript
   document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.filepreview').forEach(function(node) {
@@ -22,28 +25,32 @@
   ```
 
 * 参照
-  - [Pagination between repository entries and attachments of the same container](https://www.redmine.org/issues/29395)
+  * [Pagination between repository entries and attachments of the same container](https://www.redmine.org/issues/29395)
 
 ## プロジェクトごとにヘッダの背景色を変更する
 
 プロジェクトごとにヘッダの背景色を設定する。
 
 * パスのパターン
-  ```
+
+  ```text
   /
   ```
 
 * プロジェクトのパターン
-  ```
+
+  ```text
   ^<プロジェクトのID>$
   ```
 
 * タイプ
-  ```
+
+  ```text
   CSS
   ```
 
 * コード
+
   ```css
   #top-menu {
     background-color: #0000CD;
@@ -61,16 +68,19 @@
 プロジェクト横断の issue 作成の画面でプロジェクトの選択ごとに背景色を変更する。
 
 * パスのパターン
-  ```
+
+  ```text
   (^/issues/new$|^/issues/\d+)
   ```
 
 * タイプ
-  ```
+
+  ```text
   Javascript
   ```
 
 * コード
+
   ```javascript
   function changeBackgroundColor() {
     let projectId = document.getElementById('issue_project_id');

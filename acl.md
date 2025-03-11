@@ -16,10 +16,10 @@
 
 - `Project.allow_to?`
 
-   プロジェクトで action が許可されているかどうか。
+  プロジェクトで action が許可されているかどうか。
 
-   - アーカイブプロジェクトの場合は false
-   - クローズプロジェクトかつ `read` アクションがない場合は false
+  - アーカイブプロジェクトの場合は false
+  - クローズプロジェクトかつ `read` アクションがない場合は false
 
 - `Project.allowd_permissions` (private)
 

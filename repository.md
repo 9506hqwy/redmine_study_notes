@@ -166,5 +166,5 @@ Redmine::Scm::Base.add "XXX"
 ### Branch
 
 - String
-   - revision
-   - scmid
+  - revision
+  - scmid

@@ -1,4 +1,4 @@
-# Welcome to Redmine Study Notes's documentation!
+# Welcome to Redmine Study Notes's documentation
 
 ```{toctree}
 ---
