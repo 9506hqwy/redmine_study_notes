@@ -20,6 +20,7 @@ extensions = [
 ]
 
 exclude_patterns = [
+    '.devcontainer',
     '.mypy_cache',
     '.venv',
     '.vscode',
