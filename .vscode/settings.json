@@ -1,4 +1,5 @@
 {
+    "textlint.configPath": "${workspaceFolder}/.textlintrc.json",
     "[markdown]": {
         "editor.codeActionsOnSave": {
             "source.fixAll.markdownlint": "explicit"

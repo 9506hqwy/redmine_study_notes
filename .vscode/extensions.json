@@ -4,6 +4,7 @@
         "editorconfig.editorconfig",
         "ms-python.python",
         "swyddfa.esbonio",
+        "taichi.vscode-textlint",
         "yzhang.markdown-all-in-one"
     ]
 }

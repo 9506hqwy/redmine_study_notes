@@ -1,0 +1,17 @@
+{
+    "plugins": {},
+    "filters": {
+        "comments": true
+    },
+    "rules": {
+        "preset-ja-technical-writing": {
+            "max-comma": {
+                "max": 5
+            },
+            "no-exclamation-question-mark": false,
+            "sentence-length": {
+                "max": 256
+            }
+        }
+    }
+}

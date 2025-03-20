@@ -262,20 +262,23 @@ Rails4 は `Controller._helpers` に `include` される。
 
 テストは以下のコマンドで実行できる。
 
-```sh
-bundle exec rake redmine:plugins:test NAME=<プラグインの名前>
-```
+1. タスクを使用する方法
 
-または、
+   ```sh
+   bundle exec rake redmine:plugins:test NAME=<プラグインの名前>
+   ```
 
-```sh
-bundle exec rake test TEST=plugins/<プラグインの名前>/test/**/*_test.rb
-```
+2. test コマンドを使用する方法
 
-上記はプラグインがロードされるタイミングが異なる。
-前者は `init.rb`, `test_helper.rb` の順に実行される、
-後者は `test_helper.rb`, `init.rb` の順に実行される、
+   ```sh
+   bundle exec rake test TEST=plugins/<プラグインの名前>/test/**/*_test.rb
+   ```
+
+上記はプラグインのロードされるタイミングが異なる。
+前者は `init.rb`, `test_helper.rb` の順に実行される。
+後者は `test_helper.rb`, `init.rb` の順に実行される。
+
 そのため、`test_helper.rb` 内で `SimpleCov.start` 前に `init.rb` で `require` する前者の実行方法では
-*lib* ディレクトリのカバレッジが取得できない場合がある。
+*lib* ディレクトリのカバレッジを取得できない場合がある。
 
 なぜか Redmine3 は影響を受けない。複数回 `init.rb` が呼ばれていそう。

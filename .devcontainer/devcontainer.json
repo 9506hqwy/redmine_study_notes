@@ -12,6 +12,10 @@
         "label=disable",
         "seccomp=unconfined"
     ],
+    // Add features.
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
     // Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "${containerWorkspaceFolder}/.devcontainer/post-create.sh",
     // Uncomment to connect as root instead.
