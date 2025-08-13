@@ -1,10 +1,10 @@
 {
     "recommendations": [
+        "3w36zj6.textlint",
         "davidanson.vscode-markdownlint",
         "editorconfig.editorconfig",
         "ms-python.python",
         "swyddfa.esbonio",
-        "taichi.vscode-textlint",
         "yzhang.markdown-all-in-one"
     ]
 }

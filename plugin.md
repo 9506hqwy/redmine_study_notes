@@ -247,12 +247,20 @@ t.a
 `helper` メソッド (*actionpack/lib/abstract_controller/helpers.rb*) で `include` されたモジュールは view のみで使用できる。
 
 `helper` メソッドはコントローラクラス内にある helper 用のモジュールに `include` される。
+初回実行のとき `@_helpers` に格納される。`@_helpers` がない場合は継承しているクラスの helper が使用される。
 
 Rails4 は `Controller._helpers` に `include` される。
 `ActionController::Base` -> `ActionView::Layouts` -> `ActionView::Rendering` で `include` されている
 `ActionView::Rendering._render_template` で `view_context` として `ActionView::Base` が作成され `Controller._helpers` を `include` し
 `ActionView::Renderer.render` に渡される。
 `Controler._helpers` は `Controller.helpers` で取得できる `ActionView::Base` にも `extend` されている(*actionpack/lib/action_controller/metal/helpers.rb*)。
+
+`view_context` の作成元になる `view_context_class` は一度作成されると更新されない [with_empty_template_cache](https://github.com/rails/rails/blob/v7.2.2.1/actionview/lib/action_view/base.rb#L199-L211)。
+
+Rails7.1 以降 eager_load が有効な場合(production モード)は `after_plugins_loaded` から `after_initialize` の間に `view_context_class` が生成されるため、
+`after_initialize` で `helper` メソッドを実行して新規に `@_helpers` を格納しても `view_context_class` に反映されない [2fd3427](https://github.com/rails/rails/commit/2fd34270eb84854735426a75b9a9007cb10d90fa)。
+
+eager_load は [Finisher](https://github.com/rails/rails/blob/v7.2.2.1/railties/lib/rails/application/finisher.rb#L82) で実行される。
 
 ## テスト
 
@@ -282,3 +290,7 @@ Rails4 は `Controller._helpers` に `include` される。
 *lib* ディレクトリのカバレッジを取得できない場合がある。
 
 なぜか Redmine3 は影響を受けない。複数回 `init.rb` が呼ばれていそう。
+
+## 参照
+
+- [Rails の初期化プロセス](https://railsguides.jp/initialization.html)
