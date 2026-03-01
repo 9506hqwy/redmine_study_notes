@@ -8,6 +8,7 @@ numbered: 2
 ---
 
 database
+auth
 acl
 wiki
 macro
