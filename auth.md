@@ -101,6 +101,11 @@ curl -H "Authorization: Bearer XjgptuJ9CPfv-bkeZmqAVoZK0CMOwbUyqTLT22_8NtY" http
 }
 ```
 
+## その他
+
+- [authorization_code](https://github.com/redmine/redmine/blob/6.1.0/config/initializers/30-redmine.rb#L47) のみサポート
+  - `client_credentials` を追加するとアクセストークンは取得できるが、そのトークンを指定してもユーザが[取得](https://github.com/redmine/redmine/blob/6.1.0/app/controllers/application_controller.rb#L137)できない。
+
 ## 参考
 
 - [OAuth2 support for Redmine API Apps (OAuth2 Provider)](https://www.redmine.org/issues/24808)
