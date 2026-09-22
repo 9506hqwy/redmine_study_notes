@@ -289,7 +289,47 @@ eager_load は [Finisher](https://github.com/rails/rails/blob/v7.2.2.1/railties/
 そのため、`test_helper.rb` 内で `SimpleCov.start` 前に `init.rb` で `require` する前者の実行方法では
 *lib* ディレクトリのカバレッジを取得できない場合がある。
 
+ただし Redmine6 以降はどちらも後者の動作となる。
+[これ](https://github.com/redmine/redmine/commit/c38e847fa656e4007e44e7ee882e0abf105be8cb)
+の影響か？
+
 なぜか Redmine3 は影響を受けない。複数回 `init.rb` が呼ばれていそう。
+
+```{note}
+プラグインをシンボリックシンクでインストールしている場合に
+*test/test_helper.rb* 内の `__FILE__` に格納されるパスはシンボリックリンクのままになる。
+前者の場合、このシンボリックリンクが解決され絶対パスで `__FILE__` に格納される現象が発生した。
+そのため Redmine の *test/test_helper.rb* を参照できずエラーが発生した。
+原因は不明で devcontainer を再構築することで現象が発生しなくなった。
+```
+
+## その他
+
+タスクの一覧を確認する。
+
+```sh
+bundle exec rails -T
+```
+
+```text
+rails about                                       # List versions of all Rails frameworks and the environment
+rails app:template                                # Applies the template supplied by LOCATION=(/path/to/template) or URL
+ :
+ :
+```
+
+タスクを実装している rake ファイルを確認する。
+
+```sh
+bundle exec rails -w
+```
+
+```text
+rails about                          /usr/src/redmine/5.1/vendor/bundle/ruby/3.2.0/gems/railties-6.1.7.10/lib/rails/tasks/misc.rake:10:in `<top (required)>'
+rails app:binstub:yarn               /usr/src/redmine/5.1/vendor/bundle/ruby/3.2.0/gems/railties-6.1.7.10/lib/rails/tasks/framework.rake:64:in `block (2 levels) in <top (required)>'
+ :
+ :
+```
 
 ## 参照
 
